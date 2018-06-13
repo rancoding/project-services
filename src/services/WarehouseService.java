@@ -1,9 +1,10 @@
 package services;
 
+import bll.WarehouseBLL;
 import dao.Armazem;
-import hibernate.HibernateUtil;
+import hibernate.HibernateGenericLibrary;
+import java.util.ArrayList;
 import java.util.List;
-import org.hibernate.Session;
 
 public class WarehouseService {
 
@@ -16,14 +17,26 @@ public class WarehouseService {
      */
     private List<Armazem> getWarehouseList()
     {
-        /* Initializes and opens the database session using hibernate */
-        Session session = HibernateUtil.getSessionFactory().openSession();
-        
-        List<Armazem> warehouseList;
-        warehouseList = session.createCriteria(Armazem.class).list();
-        
-        session.close();
+        List<Armazem> warehouseList = HibernateGenericLibrary.executeHQLQuery("FROM Armazem");
+        HibernateGenericLibrary.closeSession();
         
         return warehouseList;
+    }
+    
+    /**
+     * Converts an warehouse list to a warehouseBLL list
+     * @return BLL list
+     */
+    public List<WarehouseBLL> getConvertedWarehouseList()
+    {
+        List<Armazem> warehouseList = this.getWarehouseList();
+        List<WarehouseBLL> bll = new ArrayList<>();
+        
+        for(Armazem warehouse : warehouseList)
+        {
+            bll.add(new WarehouseBLL(warehouse));
+        }
+        
+        return bll;
     }
 }

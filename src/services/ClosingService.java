@@ -3,21 +3,19 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package projectservices;
+package services;
 
-import bll.WarehouseBLL;
+import hibernate.HibernateGenericLibrary;
 
 /**
  *
  * @author Gustavo Vieira
  */
-public class ProjectServices {
+public class ClosingService {
 
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String[] args) {
-        
+    public static void closeSession()
+    {
+        HibernateGenericLibrary.closeSession();
     }
     
 }
