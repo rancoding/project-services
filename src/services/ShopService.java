@@ -15,11 +15,9 @@ public class ShopService {
      * Gets a shop list from the database
      * @return database shops
      */
-    private List<Loja> getShopList()
+    private static List<Loja> getShopList()
     {
         List<Loja> shopList = HibernateGenericLibrary.executeHQLQuery("FROM Loja");
-        HibernateGenericLibrary.closeSession();
-        
         return shopList;
     }
     
@@ -27,10 +25,10 @@ public class ShopService {
      * Converts a shop list to a shopBLL list
      * @return BLL list
      */
-    public List<ShopBLL> getConvertedShopList()
+    public static List<ShopBLL> getConvertedShopList()
     {
         
-        List<Loja> shopList = this.getShopList();
+        List<Loja> shopList = ShopService.getShopList();
         List<ShopBLL> bll = new ArrayList<>();
         
         for(Loja shop : shopList)

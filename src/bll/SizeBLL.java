@@ -5,26 +5,25 @@
  */
 package bll;
 
-import dao.Marca;
+import dao.Tamanho;
 
 /**
  *
  * @author Gustavo Vieira
  */
-public class BrandBLL extends Marca {
+public class SizeBLL extends Tamanho {
 
-    public BrandBLL() {
+    public SizeBLL() {
     }
     
-    public BrandBLL(Marca brand) {
-        super(brand.getIdmarca(), brand.getNome(), brand.getProdutos());
+    public SizeBLL(Tamanho size)
+    {
+        super(size.getIdtamanho(), size.getDescricao(), size.getProdutos());
     }
 
     @Override
     public String toString() {
-        return super.getNome();
+        return super.getDescricao();
     }
-    
-    
     
 }
